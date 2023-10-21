@@ -3,6 +3,7 @@ import React from 'react';
 import {Dimensions, Image, ScrollView, Text, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
 import {styles} from "../theme";
 import {useNavigation} from "@react-navigation/native";
+import {image342} from "../api/movieDB";
 
 let {width, height} = Dimensions.get('window')
 
@@ -36,7 +37,8 @@ const MovieList = ({title, data, hideSeeAll}) => {
 							>
 								<View className='space-y-3 mr-4'>
 									<Image
-										source={ require('../../assets/images/moviePoster2.png')}
+										//source={ require('../../assets/images/moviePoster2.png')}
+										source={{uri: image342(item.poster_path)}}
 										className='rounded-3xl'
 										style={{width: width*0.33, height: height*0.22}}
 									/>

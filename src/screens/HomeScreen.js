@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -9,6 +9,7 @@ import TrendingMovies from "../components/trending";
 import MovieList from "../components/movieList";
 import {useNavigation} from "@react-navigation/native";
 import Loading from "../components/loading";
+import {fetchTopRatedMovies, fetchTrendingMovies, fetchUpcomingMovies} from "../api/movieDB";
 
 const ios = Platform.OS === 'ios';
 const HomeScreen = () => {
@@ -16,6 +17,40 @@ const HomeScreen = () => {
 	const [upcoming, setUpcoming] = useState([1,2,3]);
 	const [topRated, setTopRated] = useState([1,2,3]);
 	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		getTrendingMovies()
+		getUpcomingMovies()
+		getTopRatedMovies()
+	}, []);
+
+	const getTrendingMovies = async () => {
+	    const data = await fetchTrendingMovies();
+		console.log('Got trending movies', data);
+		if (data && data.results) {
+			setTrending(data.results);
+			setLoading(false);
+		}
+	}
+
+	const getUpcomingMovies = async () => {
+	    const data = await fetchUpcomingMovies();
+		console.log('Got upcoming movies', data);
+		if (data && data.results) {
+			setUpcoming(data.results);
+			//setLoading(false);
+		}
+	}
+
+	const getTopRatedMovies = async () => {
+	    const data = await fetchTopRatedMovies();
+		console.log('Got top rated movies', data);
+		if (data && data.results) {
+			setTopRated(data.results);
+			//setLoading(false);
+		}
+	}
+
 
 	const navigation = useNavigation()
 	return (
