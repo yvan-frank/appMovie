@@ -13,9 +13,9 @@ import {fetchTopRatedMovies, fetchTrendingMovies, fetchUpcomingMovies} from "../
 
 const ios = Platform.OS === 'ios';
 const HomeScreen = () => {
-	const [trending, setTrending] = useState([1,2,3]);
-	const [upcoming, setUpcoming] = useState([1,2,3]);
-	const [topRated, setTopRated] = useState([1,2,3]);
+	const [trending, setTrending] = useState([]);
+	const [upcoming, setUpcoming] = useState([]);
+	const [topRated, setTopRated] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
 	const getTrendingMovies = async () => {
 	    const data = await fetchTrendingMovies();
-		console.log('Got trending movies', data);
+		//console.log('Got trending movies', data);
 		if (data && data.results) {
 			setTrending(data.results);
 			setLoading(false);
@@ -35,7 +35,7 @@ const HomeScreen = () => {
 
 	const getUpcomingMovies = async () => {
 	    const data = await fetchUpcomingMovies();
-		console.log('Got upcoming movies', data);
+		//console.log('Got upcoming movies', data);
 		if (data && data.results) {
 			setUpcoming(data.results);
 			//setLoading(false);
@@ -44,7 +44,7 @@ const HomeScreen = () => {
 
 	const getTopRatedMovies = async () => {
 	    const data = await fetchTopRatedMovies();
-		console.log('Got top rated movies', data);
+		//console.log('Got top rated movies', data);
 		if (data && data.results) {
 			setTopRated(data.results);
 			//setLoading(false);
@@ -82,7 +82,7 @@ const HomeScreen = () => {
 						{/*Upcoming movie*/}
 						<MovieList title='Upcoming' data={upcoming} />
 						{/*Top-rated movie*/}
-						<MovieList title='Top rated movie' data={topRated} />
+						<MovieList title='Top rated' data={topRated} />
 
 					</ScrollView>
 				)

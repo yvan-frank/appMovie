@@ -6,10 +6,16 @@ import {useNavigation} from "@react-navigation/native";
 import {image500} from "../api/movieDB";
 
 let {width, height} = Dimensions.get('window')
-const MovieCard = ({item, handleClick}) => {
-	console.log('poater path', item.poster_path)
+const MovieCard = ({item}) => {
+	const navigate = useNavigation();
+	//console.log('poater path', item.poster_path)
+	const handleClick = () => {
+
+		navigate.navigate('MovieDetails', item)
+		//console.log('item', item)
+	}
 	return (
-		<TouchableWithoutFeedback onPress={() => handleClick(item)}>
+		<TouchableWithoutFeedback onPress={handleClick}>
 			<Image
 				//source={require('../../assets/images/moviePoster1.png')}
 				source={{uri: image500(item.poster_path)}}
@@ -20,16 +26,17 @@ const MovieCard = ({item, handleClick}) => {
 	)
 }
 const TrendingMovies = ({data}) => {
-	const navigate = useNavigation();
-	const handleClick = ({item}) => {
-		navigate.navigate('MovieDetails', item)
-	}
+
+	// const handleClick = ({item}) => {
+	// 	//navigate.navigate('MovieDetails', item)
+	// 	console.log(item)
+	// }
 	return (
 		<View className='mb-8'>
 			<Text className='text-white text-xl mx-4 mb-3'>Trending</Text>
 			<Carousel
 				data={data}
-				renderItem={({item}) => <MovieCard item={item} handleClick={handleClick} />}
+				renderItem={({item}) => <MovieCard item={item}  />}
 				firstItem={1}
 				inactiveSlideOpacity={0.60}
 				sliderWidth={width}

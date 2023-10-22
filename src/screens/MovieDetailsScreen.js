@@ -9,6 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Cast from "../components/cast";
 import MovieList from "../components/movieList";
 import Loading from "../components/loading";
+import {fetchMovieCredit, fetchMovieDetails, fetchSimilarMovies, image500} from "../api/movieDB";
 
 
 let {width, height} = Dimensions.get('window')
@@ -18,8 +19,10 @@ const MovieDetailsScreen = () => {
 	const {params: item} = useRoute();
 
 	const [isFavorite, setIsFavorite] = useState(false);
-	const [cast, setCast] = useState([1,2,3,4,5]);
-	const [similarMovie, setSimilarMovie] = useState([1,2,3,4,5]);
+	const [cast, setCast] = useState([]);
+	const [similarMovie, setSimilarMovie] = useState([]);
+
+	const [movie, setMovie] = useState({});
 
 	const [loading, setLoading] = useState(false);
 
@@ -27,7 +30,36 @@ const MovieDetailsScreen = () => {
 
 	useEffect(() => {
 		// call the movie API
+		console.log('ID =>, ', item.id)
+		setLoading(true)
+		getMovieDetails(item.id)
+		getMovieCredits(item.id)
+		getSimilarMovie(item.id)
 	}, [item]);
+
+	const getMovieDetails = async (id) => {
+		const data = await fetchMovieDetails(id);
+		//console.log('Got movie details', data);
+		if (data) {
+			setMovie(data)
+			setLoading(false);
+		}
+	}
+
+	const getMovieCredits = async (id) => {
+		const data = await fetchMovieCredit(id);
+		if (data) {
+			setCast(data.cast)
+			setLoading(false);
+		}
+	}
+
+	const getSimilarMovie = async (id) => {
+		const data = await fetchSimilarMovies(id);
+		if (data){
+			setSimilarMovie(data.results);
+		}
+	}
 
 
 	return (
@@ -55,7 +87,8 @@ const MovieDetailsScreen = () => {
 					):(
 						<View>
 							<Image
-								source={require('../../assets/images/moviePoster2.png')}
+								source={{uri: image500(movie?.poster_path)}}
+								//source={require('../../assets/images/moviePoster2.png')}
 								style={{width, height: height*0.55}}
 							/>
 							<LinearGradient
@@ -73,21 +106,32 @@ const MovieDetailsScreen = () => {
 			<View style={{marginTop: -(height*0.09)}} className='space-y-3'>
 				{/*Title*/}
 				<Text className='text-white text-center text-3xl font-bold tracking-wider'>
-					Furious Furious FuriousFurious Furious
+					{movie?.title}
 				</Text>
 				{/*Release date */}
-				<Text className='text-neutral-400 text-center text-base font-semibold'>
-					Released - 2020 - 170 min
-				</Text>
+				{
+					movie?.id?(
+						<Text className='text-neutral-400 text-center text-base font-semibold'>
+							{movie?.status} - {movie?.release_date?.split('-')[0]} - {movie?.runtime} min
+						</Text>
+					): null
+				}
 				{/*Genres */}
 				<View className='flex-row justify-center space-x-2 mx-2'>
-					<Text className='text-neutral-400 text-center text-base font-semibold'>
-						Action . Adventure  Thriller
-					</Text>
+					{
+						movie?.genres?.map((item, index) => {
+							let showDot = index + 1 !== movie.genres.length;
+							return(
+								<Text key={index} className='text-neutral-400 text-base font-semibold'>
+									{item?.name} {showDot?"·":""}
+								</Text>
+							)
+						})
+					}
 				</View>
 				{/*Descriptions */}
 				<Text className='text-neutral-400 text-base mx-4'>
-					When a mysterious woman seduces Dom into the world of terrorism and a betrayal of those closest to him, the crew face trials that will test them as never before.
+					{movie?.overview}
 				</Text>
 			</View>
 			{/*	cast*/}

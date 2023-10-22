@@ -2,6 +2,7 @@ import React from 'react';
 
 import {ScrollView, Text, TouchableOpacity, View, Image} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
+import {image185} from "../api/movieDB";
 
 const Cast = ({cast}) => {
 	const personName = 'John Doe';
@@ -9,7 +10,7 @@ const Cast = ({cast}) => {
 	const navigation = useNavigation()
 	return (
 		<View className='my-3'>
-			<Text className='text-white text-lg mx-4 mb-5'>Cast </Text>
+			<Text className='text-white text-lg mx-4 mb-5'>Top Cast </Text>
 			<ScrollView
 				horizontal
 				showsHorizontalScrollIndicator={false}
@@ -27,15 +28,22 @@ const Cast = ({cast}) => {
 									className={'w-20 h-20 rounded-full overflow-hidden items-center border-2 border-white'}
 								>
 									<Image
-										source={require('../../assets/images/castImage1.png')}
+										//source={require('../../assets/images/castImage1.png')}
+										source={{uri: image185(person.profile_path)}}
 										className='rounded-2xl h-24 w-20'
 									/>
-									<Text className='text-white text-xs mt-1'>
-										{
-											characterName.length > 14 ? characterName.slice(0, 14) + '...' : characterName
-										}
-									</Text>
+
 								</View>
+								<Text className='text-white text-xs mt-1'>
+									{
+										person?.character.length > 14 ? person?.character.slice(0, 14) + '...' : person?.character
+									}
+								</Text>
+								<Text className='text-white text-xs mt-1 text-neutral-400'>
+									{
+										person?.original_name.length > 14 ? person?.original_name.slice(0, 14) + '...' : person?.original_name
+									}
+								</Text>
 							</TouchableOpacity>
 						)
 					})
