@@ -7,6 +7,14 @@ import {image342} from "../api/movieDB";
 
 let {width, height} = Dimensions.get('window')
 
+/**
+ * Renders a movie list component.
+ *
+ * @param {string} title - The title of the movie list.
+ * @param {Array} data - An array of movie objects to display.
+ * @param {boolean} hideSeeAll - Flag to hide the "See all" button.
+ * @return {JSX.Element} The rendered movie list component.
+ */
 const MovieList = ({title, data, hideSeeAll}) => {
 	const navigation = useNavigation()
 	let movieName = "Fast And Furious Fast And Furious"

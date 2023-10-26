@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8e76a1ab-fde3-4cdb-a7f7-6d101dfa1577" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/movieDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/movieDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cast.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cast.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/movieList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/movieList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/trending.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/trending.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/MovieDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MovieDetailsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PersonScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PersonScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SearchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SearchScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +62,9 @@
       <workItem from="1697631064534" duration="4996000" />
       <workItem from="1697662532808" duration="38000" />
       <workItem from="1697911912510" duration="2002000" />
-      <workItem from="1697965823829" duration="10291000" />
+      <workItem from="1697965823829" duration="11152000" />
+      <workItem from="1698314477759" duration="82000" />
+      <workItem from="1698360295670" duration="369000" />
     </task>
     <servers />
   </component>

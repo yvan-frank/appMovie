@@ -6,6 +6,13 @@ import {useNavigation} from "@react-navigation/native";
 import {image500} from "../api/movieDB";
 
 let {width, height} = Dimensions.get('window')
+
+/**
+ * Renders a movie card component.
+ *
+ * @param {object} item - The movie item data.
+ * @return {JSX.Element} The movie card component.
+ */
 const MovieCard = ({item}) => {
 	const navigate = useNavigation();
 	//console.log('poater path', item.poster_path)
@@ -25,6 +32,13 @@ const MovieCard = ({item}) => {
 		</TouchableWithoutFeedback>
 	)
 }
+
+/**
+ * Renders a component that displays a list of trending movies.
+ *
+ * @param {object} data - The data containing the list of trending movies.
+ * @return {JSX.Element} The rendered component.
+ */
 const TrendingMovies = ({data}) => {
 
 	// const handleClick = ({item}) => {
