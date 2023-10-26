@@ -15,6 +15,12 @@ import {fetchMovieCredit, fetchMovieDetails, fetchSimilarMovies, image500} from 
 let {width, height} = Dimensions.get('window')
 const ios = Platform.OS === 'ios'
 const topMargin = ios ? '' : 'mt-5'
+
+/**
+ * Renders the movie details screen.
+ *
+ * @return {JSX.Element} The rendered movie details screen.
+ */
 const MovieDetailsScreen = () => {
 	const {params: item} = useRoute();
 

@@ -39,6 +39,11 @@ const apiCall = async (endpoint, params) => {
 	}
 }
 
+/**
+ * Fetches the trending movies.
+ *
+ * @return {Promise} A Promise that resolves to the API response.
+ */
 export const fetchTrendingMovies = () => {
 	return apiCall(trendingMoviesEndpoint);
 }
